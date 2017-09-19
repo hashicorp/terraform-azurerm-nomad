@@ -6,7 +6,7 @@ data-center aware scheduler. A Nomad cluster typically includes a small number o
 for being part of the [concensus protocol](https://www.nomadproject.io/docs/internals/consensus.html), and a larger 
 number of client nodes, which are used for running jobs:
 
-![Nomad architecture](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/_docs/architecture.png)
+![Nomad architecture](https://raw.githubusercontent.com/hashicorp/terraform-azurerm-nomad/master/_docs/architecture.png)
 
 This Module includes:
 

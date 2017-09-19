@@ -8,7 +8,7 @@ nodes, which are responsible for being part of the [concensus
 protocol](https://www.nomadproject.io/docs/internals/consensus.html), and one with a larger number of Nomad and Consul 
 client nodes, which are used to run jobs:
 
-![Nomad architecture](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/_docs/architecture-nomad-consul-colocated.png)
+![Nomad architecture](https://raw.githubusercontent.com/hashicorp/terraform-azurerm-nomad/master/_docs/architecture-nomad-consul-colocated.png)
 
 You will need to create an [Azure Managed Image](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/build-image-with-packer) 
 that has Nomad and Consul installed, which you can do using the [nomad-consul-ami example](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/examples/nomad-consul-ami)).  
