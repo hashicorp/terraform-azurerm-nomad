@@ -55,12 +55,12 @@ variable "instance_tier" {
 
 variable "computer_name_prefix" {
   description = "The string that the name of each instance in the cluster will be prefixed with"
-  default = "consul"
+  default = "nomad"
 }
 
 variable "admin_user_name" {
   description = "The name of the administrator user for each instance in the cluster"
-  default = "consuladmin"
+  default = "nomadadmin"
 }
 
 variable "instance_root_volume_size" {
@@ -71,16 +71,6 @@ variable "instance_root_volume_size" {
 variable "cluster_size" {
   description = "The number of nodes to have in the Consul cluster. We strongly recommended that you use either 3 or 5."
   default     = 3
-}
-
-variable "cluster_tag_key" {
-  description = "Add a tag with this key and the value var.cluster_tag_value to each Instance in the ASG. This can be used to automatically find other Consul nodes and form a cluster."
-  default     = "consul-servers"
-}
-
-variable "cluster_tag_value" {
-  description = "Add a tag with key var.clsuter_tag_key and this value to each Instance in the ASG. This can be used to automatically find other Consul nodes and form a cluster."
-  default     = "auto-join"
 }
 
 variable "subnet_ids" {
@@ -110,14 +100,8 @@ variable "root_volume_size" {
   default     = 50
 }
 
-variable "target_group_arns" {
-  description = "A list of target group ARNs of Application Load Balanacer (ALB) targets to associate with this ASG. If you're using a Elastic Load Balancer (AKA ELB Classic), use the load_balancers variable instead."
-  type        = "list"
-  default     = []
-}
-
 variable "wait_for_capacity_timeout" {
-  description = "A maximum duration that Terraform should wait for ASG instances to be healthy before timing out. Setting this to '0' causes Terraform to skip all Capacity Waiting behavior."
+  description = "A maximum duration that Terraform should wait for Scale Set instances to be healthy before timing out. Setting this to '0' causes Terraform to skip all Capacity Waiting behavior."
   default     = "10m"
 }
 

@@ -1,13 +1,13 @@
 # Nomad Cluster
 
 This folder contains a [Terraform](https://www.terraform.io/) module that can be used to deploy a 
-[Nomad](https://www.nomadproject.io/) cluster in [AWS](https://aws.amazon.com/) on top of an Scale Set. This 
+[Nomad](https://www.nomadproject.io/) cluster in [Azure](https://azure.microsoft.com/) on top of an Scale Set. This 
 module is designed to deploy an [Azure Managed Image](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/build-image-with-packer) 
-that had Nomad installed via the [install-nomad](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/modules/install-nomad) module in this Blueprint.
+that had Nomad installed via the [install-nomad](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/modules/install-nomad) module in this Module.
 
 Note that this module assumes you have a separate [Consul](https://www.consul.io/) cluster already running. If you want
 to run Consul and Nomad in the same cluster, instead of using this module, see the [Deploy Nomad and Consul in the same 
-cluster documentation](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/README.md#deploy-nomad-and-consul-in-the-same-cluster).
+cluster documentation](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/README.md#deploy-nomad-and-consul-in-the-same-cluster).
 
 
 
@@ -46,19 +46,19 @@ Note the following parameters:
 
 * `ami_id`: Use this parameter to specify the ID of a Nomad [Amazon Machine Image 
   (Azure Image)](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/build-image-with-packer) to deploy on each server in the cluster. You
-  should install Nomad in this Azure Image using the scripts in the [install-nomad](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/modules/install-nomad) module.
+  should install Nomad in this Azure Image using the scripts in the [install-nomad](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/modules/install-nomad) module.
   
 * `user_data`: Use this parameter to specify a [User 
   Data](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/classic/inject-custom-data) script that each
-  server will run during boot. This is where you can use the [run-nomad script](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/modules/run-nomad) to configure and 
-  run Nomad. The `run-nomad` script is one of the scripts installed by the [install-nomad](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/modules/install-nomad) 
+  server will run during boot. This is where you can use the [run-nomad script](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/modules/run-nomad) to configure and 
+  run Nomad. The `run-nomad` script is one of the scripts installed by the [install-nomad](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/modules/install-nomad) 
   module. 
 
 You can find the other parameters in [vars.tf](vars.tf).
 
-Check out the [nomad-consul-separate-cluster example](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/examples/nomad-consul-separate-cluster example) for working
+Check out the [nomad-consul-separate-cluster example](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/examples/nomad-consul-separate-cluster example) for working
 sample code. Note that if you want to run Nomad and Consul on the same cluster, see the [nomad-consul-colocated-cluster 
-example](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/examples/nomad-consul-colocated-cluster example) instead.
+example](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/examples/nomad-consul-colocated-cluster example) instead.
 
 
 
@@ -71,14 +71,14 @@ example](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/exampl
 If you want to connect to the cluster from your own computer, [install 
 Nomad](https://www.nomadproject.io/docs/install/index.html) and execute commands with the `-address` parameter set to
 the IP address of one of the servers in your Nomad cluster. Note that this only works if the Nomad cluster is running 
-in public subnets and/or your default VPC (as in both [examples](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/examples)), which is OK for testing and 
+in public subnets and/or your default VPC (as in both [examples](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/examples)), which is OK for testing and 
 experimentation, but NOT recommended for production usage.
 
 To use the HTTP API, you first need to get the public IP address of one of the Nomad Instances. If you deployed the
-[nomad-consul-colocated-cluster](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/examples/nomad-consul-colocated-cluster) or
-[nomad-consul-separate-cluster](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/examples/nomad-consul-separate-cluster) example, the 
-[nomad-examples-helper.sh script](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/examples/nomad-examples-helper/nomad-examples-helper.sh) will do the tag lookup for 
-you automatically (note, you must have the [AWS CLI](https://aws.amazon.com/cli/), 
+[nomad-consul-colocated-cluster](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/examples/nomad-consul-colocated-cluster) or
+[nomad-consul-separate-cluster](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/examples/nomad-consul-separate-cluster) example, the 
+[nomad-examples-helper.sh script](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/examples/nomad-examples-helper/nomad-examples-helper.sh) will do the tag lookup for 
+you automatically (note, you must have the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest), 
 [jq](https://stedolan.github.io/jq/), and the [Nomad agent](https://www.nomadproject.io/) installed locally):
 
 ```
@@ -145,21 +145,19 @@ documentation](https://www.nomadproject.io/docs/service-discovery/index.html) fo
 
 This module creates the following architecture:
 
-![Nomad architecture](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/_docs/architecture.png)
+![Nomad architecture](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/_docs/architecture.png)
 
 This architecture consists of the following resources:
 
-* [Scale Set](#auto-scaling-group)
+* [Scale Set](#scale-set)
 * [Security Group](#security-group)
 * [IAM Role and Permissions](#iam-role-and-permissions)
 
 
 ### Scale Set
 
-This module runs Nomad on top of an [Scale Set (Scale Set)](https://aws.amazon.com/autoscaling/). Typically, you
-should run the Scale Set with 3 or 5 Azure Instances spread across multiple [Availability 
-Zones](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html). Each of the EC2
-Instances should be running an Azure Image that has had Nomad installed via the [install-nomad](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/modules/install-nomad)
+This module runs Nomad on top of an Scale Set. Each of the Azure
+Instances should be running an Azure Image that has had Nomad installed via the [install-nomad](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/modules/install-nomad)
 module. You pass in the URI of the Azure Image to run using the `ami_id` input parameter.
 
 
@@ -176,28 +174,17 @@ The Security Group ID is exported as an output variable if you need to add addit
 Check out the [Security section](#security) for more details. 
 
 
-### IAM Role and Permissions
-
-Each Azure Instance in the Scale Set has an [IAM Role](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) attached. 
-We give this IAM role a small set of IAM permissions that each Azure Instance can use to automatically discover the other 
-Instances in its Scale Set and form a cluster with them. 
-
-The IAM Role ARN is exported as an output variable if you need to add additional permissions. 
-
-
-
-
 
 ## How do you roll out updates?
 
 If you want to deploy a new version of Nomad across the cluster, the best way to do that is to:
 
 1. Build a new Azure Image.
-1. Set the `ami_id` parameter to the ID of the new Azure Image.
+1. Set the `image_id` parameter to the ID of the new Azure Image.
 1. Run `terraform apply`.
 
 This updates the Launch Configuration of the Scale Set, so any new Instances in the Scale Set will have your new Azure Image, but it does
-NOT actually deploy those new instances. To make that happen, you should do the following:
+NOT actually deploy those new instances. 
 
 1. Issue an API call to one of the old Instances in the Scale Set to have it leave gracefully. E.g.:
 
@@ -205,10 +192,10 @@ NOT actually deploy those new instances. To make that happen, you should do the 
     nomad server-force-leave -address=<OLD_INSTANCE_IP>:4646
     ```
     
-1. Once the instance has left the cluster, terminate it:
+1. Once the instance has left the cluster, ssh to the instance and terminate it:
  
     ```
-    aws ec2 terminate-instances --instance-ids <OLD_INSTANCE_ID>
+    init 0
     ```
 
 1. After a minute or two, the Scale Set should automatically launch a new Instance, with the new Azure Image, to replace the old one.
@@ -253,14 +240,14 @@ Here are some of the main security considerations to keep in mind when using thi
 ### Encryption in transit
 
 Nomad can encrypt all of its network traffic. For instructions on enabling network encryption, have a look at the
-[How do you handle encryption documentation](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/modules/run-nomad#how-do-you-handle-encryption).
+[How do you handle encryption documentation](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/modules/run-nomad#how-do-you-handle-encryption).
 
 
 ### Encryption at rest
 
 The Azure Instances in the cluster store all their data on the root EBS Volume. To enable encryption for the data at
 rest, you must enable encryption in your Nomad Azure Image. If you're creating the Azure Image using Packer (e.g. as shown in
-the [nomad-consul-ami example](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/examples/nomad-consul-ami)), you need to set the [encrypt_boot 
+the [nomad-consul-ami example](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/examples/nomad-consul-ami)), you need to set the [encrypt_boot 
 parameter](https://www.packer.io/docs/builders/amazon-ebs.html#encrypt_boot) to `true`.  
 
 
@@ -283,51 +270,3 @@ This module attaches a security group to each Azure Instance that allows inbound
 Note that all the ports mentioned above are configurable via the `xxx_port` variables (e.g. `http_port`). See
 [vars.tf](vars.tf) for the full list.  
   
-  
-
-### SSH access
-
-You can associate an [EC2 Key Pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) with each
-of the Azure Instances in this cluster by specifying the Key Pair's name in the `ssh_key_name` variable. If you don't
-want to associate a Key Pair with these servers, set `ssh_key_name` to an empty string.
-
-
-
-
-
-## What's NOT included in this module?
-
-This module does NOT handle the following items, which you may want to provide on your own:
-
-* [Consul](#consul)
-* [Monitoring, alerting, log aggregation](#monitoring-alerting-log-aggregation)
-* [VPCs, subnets, route tables](#vpcs-subnets-route-tables)
-* [DNS entries](#dns-entries)
-
-
-### Consul
-
-This module assumes you already have Consul deployed in a separate cluster. If you want to run Nomad and Consul on the
-same cluster, instead of using this module, see the [Deploy Nomad and Consul in the same cluster 
-documentation](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/README.md#deploy-nomad-and-consul-in-the-same-cluster).
-
-
-### Monitoring, alerting, log aggregation
-
-This module does not include anything for monitoring, alerting, or log aggregation. All Scale Sets and Azure Instances come 
-with limited [CloudWatch](https://aws.amazon.com/cloudwatch/) metrics built-in, but beyond that, you will have to 
-provide your own solutions.
-
-
-### VPCs, subnets, route tables
-
-This module assumes you've already created your network topology (VPC, subnets, route tables, etc). You will need to 
-pass in the the relevant info about your network topology (e.g. `vpc_id`, `subnet_ids`) as input variables to this 
-module.
-
-
-### DNS entries
-
-This module does not create any DNS entries for Nomad (e.g. in Route 53).
-
-

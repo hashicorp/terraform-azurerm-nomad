@@ -1,20 +1,12 @@
 # Nomad Run Script
 
-This folder contains a script for configuring and running Nomad on an [AWS](https://aws.amazon.com/) server. This 
-script has been tested on the following operating systems:
-
-* Ubuntu 16.04
-* Amazon Linux
-
-There is a good chance it will work on other flavors of Debian, CentOS, and RHEL as well.
-
-
-
+This folder contains a script for configuring and running Nomad on an [Azure](https://azure.microsoft.com/) server. This 
+script has been tested on Ubuntu 16.04. There is a good chance it will work on other flavors of Debian as well.
 
 ## Quick start
 
 This script assumes you installed it, plus all of its dependencies (including Nomad itself), using the [install-nomad 
-module](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/modules/install-nomad). The default install path is `/opt/nomad/bin`, so to start Nomad in server mode, you 
+module](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/modules/install-nomad). The default install path is `/opt/nomad/bin`, so to start Nomad in server mode, you 
 run:
 
 ```
@@ -45,8 +37,8 @@ when the Azure Instance is first booting. If you are running Consul on the same 
 *after* Consul has booted. After running `run-nomad` on that initial boot, the `supervisord` configuration 
 will automatically restart Nomad if it crashes or the EC2 instance reboots.
 
-See the [nomad-consul-colocated-cluster example](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/examples/nomad-consul-colocated-cluster example) and 
-[nomad-consul-separate-cluster example](https://github.com/hashicorp/terraform-azurerm-vault/tree/master/examples/nomad-consul-separate-cluster example) for fully-working sample code.
+See the [nomad-consul-colocated-cluster example](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/examples/nomad-consul-colocated-cluster example) and 
+[nomad-consul-separate-cluster example](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/examples/nomad-consul-separate-cluster example) for fully-working sample code.
 
 
 
@@ -84,7 +76,7 @@ Example:
 ## Nomad configuration
 
 `run-nomad` generates a configuration file for Nomad called `default.hcl` that tries to figure out reasonable 
-defaults for a Nomad cluster in AWS. Check out the [Nomad Configuration Files 
+defaults for a Nomad cluster in Azure. Check out the [Nomad Configuration Files 
 documentation](https://www.nomadproject.io/docs/agent/configuration/index.html) for what configuration settings are
 available.
   
@@ -94,8 +86,7 @@ available.
 `run-nomad` sets the following configuration values by default:
 
 * [advertise](https://www.nomadproject.io/docs/agent/configuration/index.html#advertise): All the advertise addresses
-  are set to the Instance's private IP address, as fetched from  
-  [Metadata](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html).
+  are set to the Instance's private IP address  
   
 * [bind_addr](https://www.nomadproject.io/docs/agent/configuration/index.html#bind_addr): Set to 0.0.0.0.
   
@@ -108,14 +99,11 @@ available.
   `127.0.0.1:8500`, with the assumption that the Consul agent is running on the same server. 
 
 * [datacenter](https://www.nomadproject.io/docs/agent/configuration/index.html#datacenter): Set to the current 
-  availability zone, as fetched from 
-  [Metadata](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html).
+  availability zone.
 
-* [name](https://www.nomadproject.io/docs/agent/configuration/index.html#name): Set to the instance id, as fetched from 
-  [Metadata](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html).     
+* [name](https://www.nomadproject.io/docs/agent/configuration/index.html#name): Set to the instance id     
 
-* [region](https://www.nomadproject.io/docs/agent/configuration/index.html#region): Set to the current AWS region, as 
-  fetched from [Metadata](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html).
+* [region](https://www.nomadproject.io/docs/agent/configuration/index.html#region): Set to the current location
                                                                                       
 * [server](https://www.nomadproject.io/docs/agent/configuration/server.html): This config is only set if `--server` is
   set.
@@ -155,7 +143,7 @@ at all using the `--skip-nomad-config` flag:
 
 Nomad can encrypt all of its network traffic (see the [encryption docs for 
 details](https://www.nomadproject.io/docs/agent/encryption.html)), but by default, encryption is not enabled in this 
-Blueprint. To enable encryption, you need to do the following:
+Module. To enable encryption, you need to do the following:
 
 1. [Gossip encryption: provide an encryption key](#gossip-encryption-provide-an-encryption-key)
 1. [RPC encryption: provide TLS certificates](#rpc-encryption-provide-tls-certificates)
@@ -202,9 +190,9 @@ tls {
 ### Consul encryption
 
 Note that Nomad relies on Consul, and enabling encryption for Consul requires a separate process. Check out the
-[official Consul encryption docs](https://www.consul.io/docs/agent/encryption.html) and the Consul AWS Blueprint
+[official Consul encryption docs](https://www.consul.io/docs/agent/encryption.html) and the Consul Azure Module
 [How do you handle encryption
-docs](https://github.com/gruntwork-io/consul-aws-blueprint/tree/master/modules/run-consul#how-do-you-handle-encryption)
+docs](https://github.com/hashicorp/terraform-azurerm-consul/tree/master/modules/run-consul#how-do-you-handle-encryption)
 for more info.
 
 
