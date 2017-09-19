@@ -145,7 +145,7 @@ documentation](https://www.nomadproject.io/docs/service-discovery/index.html) fo
 
 This module creates the following architecture:
 
-![Nomad architecture](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/_docs/architecture.png)
+![Nomad architecture](https://raw.githubusercontent.com/hashicorp/terraform-azurerm-nomad/master/_docs/architecture.png)
 
 This architecture consists of the following resources:
 
