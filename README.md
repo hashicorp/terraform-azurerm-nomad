@@ -1,4 +1,9 @@
-[![Maintained by Gruntwork.io](https://img.shields.io/badge/maintained%20by-gruntwork.io-%235849a6.svg)](https://gruntwork.io/?ref=repo_azure_nomad)
+# DISCLAIMER: This is no longer supported.
+Moving forward in the future this repository will be no longer supported and eventually lead to
+deprecation. Please use our latest versions of our products moving forward or alternatively you
+may fork the repository to continue use and development for your personal/business use.
+
+---
 # Nomad Azure Module
 
 This repo contains a Module for how to deploy a [Nomad](https://www.nomadproject.io/) cluster on 
@@ -41,7 +46,7 @@ a version number bump.
  
 ## Who maintains this Module?
 
-This Module is maintained by [Gruntwork](http://www.gruntwork.io/). If you're looking for help or commercial 
+This Module is maintained by [Gruntwork](https://gruntwork.io/?ref=repo_azure_nomad). If you're looking for help or commercial 
 support, send an email to [Modules@gruntwork.io](mailto:Modules@gruntwork.io?Subject=Nomad%20Module). 
 Gruntwork can help with:
 
