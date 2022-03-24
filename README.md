@@ -1,4 +1,9 @@
-[![Maintained by Gruntwork.io](https://img.shields.io/badge/maintained%20by-gruntwork.io-%235849a6.svg)](https://gruntwork.io/?ref=repo_azure_nomad)
+# DISCLAIMER: This is no longer supported.
+Moving forward in the future this repository will be no longer supported and eventually lead to
+deprecation. Please use our latest versions of our products moving forward or alternatively you
+may fork the repository to continue use and development for your personal/business use.
+
+---
 # Nomad Azure Module
 
 This repo contains a Module for how to deploy a [Nomad](https://www.nomadproject.io/) cluster on 
@@ -39,17 +44,9 @@ a version number bump.
  
  
  
-## Who maintains this Module?
+## Who created this Module?
 
-This Module is maintained by [Gruntwork](http://www.gruntwork.io/). If you're looking for help or commercial 
-support, send an email to [Modules@gruntwork.io](mailto:Modules@gruntwork.io?Subject=Nomad%20Module). 
-Gruntwork can help with:
-
-* Setup, customization, and support for this Module.
-* Modules for other types of infrastructure, such as VPCs, Docker clusters, databases, and continuous integration.
-* Modules that meet compliance requirements, such as HIPAA.
-* Consulting & Training on AWS, Terraform, and DevOps.
-
+These modules were created by [Gruntwork](http://www.gruntwork.io/?ref=repo_azure_nomad), in partnership with HashiCorp, in 2017 and maintained through 2021. They were deprecated in 2022 in favor of newer alternatives (see the top of the README for details).
 
 
 ## How do you use this Module?
@@ -105,14 +102,6 @@ sample code.
 
 Check out the [nomad-consul-separate-cluster example](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/examples/nomad-consul-separate-cluster) for working
 sample code.
-
- 
-
-
-
-## How do I contribute to this Module?
-
-Contributions are very welcome! Check out the [Contribution Guidelines](https://github.com/hashicorp/terraform-azurerm-nomad/tree/master/CONTRIBUTING.md) for instructions.
 
 
 
