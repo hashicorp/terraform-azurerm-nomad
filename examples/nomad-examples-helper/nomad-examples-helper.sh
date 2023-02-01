@@ -1,4 +1,7 @@
 #!/bin/bash
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
 # A script that is meant to be used with the Nomad cluster examples to:
 #
 # 1. Wait for the Nomad server cluster to come up.
