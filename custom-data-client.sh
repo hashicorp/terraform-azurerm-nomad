@@ -1,4 +1,6 @@
 #!/bin/bash
+# Copyright IBM Corp. 2017, 2026
+
 # This script is meant to be run in the User Data of each Azure Instance while it's booting. The script uses the
 # run-nomad and run-consul scripts to configure and start Nomad and Consul in client mode. Note that this script
 # assumes it's running in an Azure Image built from the Packer template in examples/nomad-consul-image/nomad-consul.json.
