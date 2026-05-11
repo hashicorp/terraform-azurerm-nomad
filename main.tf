@@ -1,3 +1,5 @@
+# Copyright IBM Corp. 2017, 2026
+
 # ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY A NOMAD CLUSTER CO-LOCATED WITH A CONSUL CLUSTER IN AZURE
 # These templates show an example of how to use the nomad-cluster module to deploy a Nomad cluster in Azure. This cluster

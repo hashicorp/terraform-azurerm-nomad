@@ -1,3 +1,5 @@
+# Copyright IBM Corp. 2017, 2026
+
 output "num_servers" {
   value = "${var.cluster_size}"
 }
